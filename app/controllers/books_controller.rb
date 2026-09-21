@@ -17,6 +17,7 @@ class BooksController < ApplicationController
       flash[:notice] = "Book created."
       redirect_to books_path
     else
+      flash.now[:alert] = "Title can't be blank."
       render('new')
     end
   end
@@ -50,7 +51,10 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(
-      :title
+      :title,
+      :author,
+      :price,
+      :published_date
     )
   end
 
