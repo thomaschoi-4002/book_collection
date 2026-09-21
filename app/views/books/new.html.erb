@@ -3,6 +3,10 @@
 <div class="books new">
   <h2>Create Book</h2>
 
+  <% if flash[:alert] %>
+    <p class="flash-alert"><%= flash[:alert] %></p>
+  <% end %>
+
   <%= form_for(@book, url: books_path, method: :post) do |f| %>
 
     <%= render(partial: 'form', locals: {f: f}) %>
