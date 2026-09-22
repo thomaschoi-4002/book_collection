@@ -66,7 +66,7 @@ end
 
 gem "json", "2.7.2"
 
-gem 'devise', '~>4.9' 
+gem 'devise', '~>5.0' 
 
 gem "omniauth", "~> 2.1" 
 
