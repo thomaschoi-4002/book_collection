@@ -32,3 +32,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore local Google OAuth secrets (set real values via Heroku Config Vars in production).
+/config/initializers/google_oauth_secrets.rb
