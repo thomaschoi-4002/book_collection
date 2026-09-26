@@ -29,6 +29,9 @@
   </head>
 
   <body>
+    <% if admin_signed_in? %>
+      <p>Signed in as <%= current_admin.email %> | <%= link_to "Sign Out", destroy_admin_session_path %></p>
+    <% end %>
     <% if flash.any? %>
       <% flash.each do |key, value| -%>
         <section class="flash flash__<%= key %>"><%= value.html_safe %></section>

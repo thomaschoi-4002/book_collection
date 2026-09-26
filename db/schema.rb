@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_09_21_233459) do
+ActiveRecord::Schema[8.0].define(version: 2026_09_26_222715) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -33,20 +33,16 @@ ActiveRecord::Schema[8.0].define(version: 2026_09_21_233459) do
     t.date "published_date"
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
+  create_table "user_books", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "position"
-    t.boolean "completed"
+  create_table "users", force: :cascade do |t|
+    t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id"
-    t.index ["category_id"], name: "index_tasks_on_category_id"
   end
 end
