@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "Books", type: :request do
+  before do
+    sign_in Admin.create!(email: "tester@example.com")
+  end
+
   it "creates a book with a title (sunny day)" do
     post books_path, params: { book: { title: "The Hobbit", author: "J.R.R. Tolkien", price: 9.99, published_date: "1937-09-21" } }
 
