@@ -17,7 +17,7 @@ class BooksController < ApplicationController
       flash[:notice] = "Book created."
       redirect_to books_path
     else
-      flash.now[:alert] = "Title can't be blank."
+      flash.now[:alert] = "#{@book.errors.full_messages.to_sentence}."
       render("new")
     end
   end

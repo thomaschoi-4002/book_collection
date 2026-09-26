@@ -28,6 +28,13 @@ RSpec.describe "Books", type: :request do
     expect(Book.last.author).to eq("J.R.R. Tolkien")
   end
 
+  it "does not create a book without an author (rainy day)" do
+    post books_path, params: { book: { title: "The Hobbit", author: "", price: 9.99, published_date: "1937-09-21" } }
+
+    expect(Book.count).to eq(0)
+    expect(flash[:alert]).to eq("Author can't be blank.")
+  end
+
   it "creates a book with a price (sunny day)" do
     post books_path, params: { book: { title: "The Hobbit", author: "J.R.R. Tolkien", price: 9.99, published_date: "1937-09-21" } }
 
@@ -36,11 +43,25 @@ RSpec.describe "Books", type: :request do
     expect(Book.last.price).to eq(BigDecimal("9.99"))
   end
 
+  it "does not create a book without a price (rainy day)" do
+    post books_path, params: { book: { title: "The Hobbit", author: "J.R.R. Tolkien", price: "", published_date: "1937-09-21" } }
+
+    expect(Book.count).to eq(0)
+    expect(flash[:alert]).to eq("Price can't be blank.")
+  end
+
   it "creates a book with a published date (sunny day)" do
     post books_path, params: { book: { title: "The Hobbit", author: "J.R.R. Tolkien", price: 9.99, published_date: "1937-09-21" } }
 
     expect(Book.count).to eq(1)
     expect(flash[:notice]).to eq("Book created.")
     expect(Book.last.published_date).to eq(Date.new(1937, 9, 21))
+  end
+
+  it "does not create a book without a published date (rainy day)" do
+    post books_path, params: { book: { title: "The Hobbit", author: "J.R.R. Tolkien", price: 9.99, published_date: "" } }
+
+    expect(Book.count).to eq(0)
+    expect(flash[:alert]).to eq("Published date can't be blank.")
   end
 end
