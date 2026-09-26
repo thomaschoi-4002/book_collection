@@ -18,7 +18,7 @@ class BooksController < ApplicationController
       redirect_to books_path
     else
       flash.now[:alert] = "Title can't be blank."
-      render('new')
+      render("new")
     end
   end
 
@@ -32,7 +32,7 @@ class BooksController < ApplicationController
       flash[:notice] = "Book updated."
       redirect_to books_path
     else
-      render('edit')
+      render("edit")
     end
   end
 
@@ -57,5 +57,4 @@ class BooksController < ApplicationController
       :published_date
     )
   end
-
 end
