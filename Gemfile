@@ -64,7 +64,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "json", "2.7.2"
+gem "json", "3.1.0"
 
 gem "devise", "~>4.9"
 
